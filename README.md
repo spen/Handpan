@@ -8,6 +8,14 @@ Folk could benefit from being able to "try out" different scales either by tappi
 
 A stretch goal would be allow them to record their handpan player and detect the notes being played, map those to midi, then play the same patterns (of hand movements) to a different handpan... that would be cool.
 
+# The project so far...
+
+Here's our starting point
+
+![Screen shot](https://raw.githubusercontent.com/spen/Handpan/master/2020-07-02.png?token=ABBCOWVPSUQHPF5BLYPE2W27A4KL6)
+
+A simple handpan component made with react, that doesn't really do much but visualize scale data as a handpan. Humble beginnings.
+
 # Files to ignore (For now)
 
 For now, let's ignore a few files, allow them to be magic voodoo files and we'll circle back to them once we find a need to and learn more about them when that times comes for each.
