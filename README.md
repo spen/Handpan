@@ -16,6 +16,34 @@ Here's our starting point
 
 A simple handpan component made with react, that doesn't really do much but visualize scale data as a handpan. Humble beginnings.
 
+# Getting Up & Running
+
+With any project you work with through git, you'll need to first clone it. To do so, go to your command line terminal (iterm or whatever) and find the following url and copy it:
+
+<img width="608" alt="Screenshot 2020-07-02 at 14 06 57" src="https://user-images.githubusercontent.com/4335450/86362576-6890d200-bc6d-11ea-8902-e2da62924348.png">
+
+Then, in your terminal run this:
+
+`git clone git@github.com:spen/Handpan.git`
+
+This makes a copy on your local machine, but keeps a reference to this project in the cloud (GitHub). In this case we call the GitHub project the 'remote' of the project. We could have many 'remotes' too.
+
+You should have the project now, so `cd` in to it with 
+
+`cd Handpan`
+
+From here run 
+
+`yarn`
+
+To install any extra software we need, then do
+
+`yarn start`
+
+to hopefully bring the project up in your browser automagically
+
+
+
 # Files to ignore (For now)
 
 For now, let's ignore a few files, allow them to be magic voodoo files and we'll circle back to them once we find a need to and learn more about them when that times comes for each.
