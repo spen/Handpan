@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+        "baseUrl": ".",
+        "outDir": "build/dist",
+        "module": "commonjs",
+        "target": "es5",
+        "sourceMap": true,
+        "allowJs": true,
+		"jsx": "react"
+  	},
+  	"exclude": [
+        "node_modules",
+        "!node_modules/@types",
+		"**/*.bu.tsx",
+        "**/*.bu.ts",
+        "**/*.test.ts",
+        "**/*.test.tsx"
+	]
+}
