@@ -16,3 +16,11 @@ Those are `package.json`, `package-lock.json`, `tsconfig.json`, `tslint.json`, `
 
 Most of this is just standard configuration across many projects and lets you work with and fine tune the app in different ways.
 I think it's important we get our bearings comfortably with the other stuff first then look at this stuff later.
+
+# Project Management & Discussion
+
+We all want the same thing, the ability to work without stress from anywhere when we need dollar from the man. let's all use this project as a trial to show that we can build and execute on something (even with near-strangers), regardless of where we are, or what hours we contribute.
+If we want, we could record some video conferences too, I think people would love watching it, but I'm happy not to do that either, we'll benefit either way around.
+
+For now I've started off an [issue thread here](https://github.com/spen/Handpan/issues/1) - think of this as a place for a discussion around the app itself... By keeping an official discussion public as you do with an issue, your helping others in the community - which you should always be trying to do... it's rewarding - and helps when someone else joins the project, as they can then see all the decisions, so it's good to assume that there's value in recording as much relevant talk and decision making as possible.
+
