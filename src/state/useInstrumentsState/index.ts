@@ -21,12 +21,6 @@ export type InstrumentNote = {
     note: String, // Maybe not a string
 }
 
-// Unrelated Note:
-/*
-    Everything should be calculated based on and relative to the root, 
-    don't just store things absolutely, or statically.
-*/
-
 export type Instrument = { 
     name: string,
     rootNote: InstrumentNote, 
