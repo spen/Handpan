@@ -29,3 +29,4 @@ To do so, check over your work and do `git add .`. This will add all of the new 
 As mentioned above, always assume commucation is logged. 
 This is actually great because we can always refer back to a previous comment, or discussion in the history of the project.
 We can talk privately no problem, but we should aim to keep any future-useful discussion either on a PR if it's relevant, or in an issue.
+  
