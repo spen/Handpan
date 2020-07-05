@@ -4,38 +4,38 @@ export default {
     name: 'F Low Pygmy',
     rootNote: {
         octave: 2,
-        note: 'F', // Maybe not a string
+        tone: 'F', // Maybe not a string
     },
     // notes should ideally be ordered from low to high, or vica versa.
     // we would have to have the saving process, or validation process before that, take care of it
     notes: [
         {
             octave: 2,
-            note: 'G',
+            tone: 'G',
         },
         {
             octave: 2,
-            note: 'Ab',
+            tone: 'Ab',
         },
         {
             octave: 3,
-            note: 'C',
+            tone: 'C',
         },
         {
             octave: 3,
-            note: 'Eb',
+            tone: 'Eb',
         },
         {
             octave: 3,
-            note: 'F',
+            tone: 'F',
         },
         {
             octave: 3,
-            note: 'G',
+            tone: 'G',
         },
         {
             octave: 4,
-            note: 'C',
+            tone: 'C',
         },
     ]
 }
