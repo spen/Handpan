@@ -35,7 +35,6 @@ const Instrument = () => {
             ) }
             { firstInstrument && (
                 <Handpan
-                    rootNote={ firstInstrument.rootNote }
                     notes={ firstInstrument.notes }
                 />
             ) }

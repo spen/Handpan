@@ -10,10 +10,13 @@ import defaultInstrument from './defaultInstrument';
 //     // Everything else unchanged
 // }
 
+window.localStorage.removeItem( 'HANDPAN_INSTRUMENTS' );
+
 const INSTRUMENTS_STICKY_KEY = 'HANDPAN_INSTRUMENTS';
 const DEFAULT_VALUE = [
     defaultInstrument
 ];
+
 
 // This is a good place to start explaning typescript.
 // In typescript when we create functions (and other things) we try to define
@@ -43,8 +46,6 @@ export type InstrumentNote = {
 // - a list of notes in the scale
 export type Instrument = { 
     name: string,
-    // notice that we will know here that the rootNote has an octave and a tone, based on this class.
-    rootNote: InstrumentNote, 
     // notes should ideally be ordered from low to high, or vica versa.
     // we would have to have the saving process, or validation process before that, take care of it
     notes: InstrumentNote[],

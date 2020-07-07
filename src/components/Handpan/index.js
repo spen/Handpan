@@ -112,20 +112,16 @@ const sampler = new Tone.Sampler(
 
 type HandpanProps = {
     notes: InstrumentNote[],
-    rootNote: InstrumentNote,
 }
 
 const Handpan: React.FC<HandpanProps> = ( { 
-    rootNote = {
-        note: 'C',
-        octave: '3',
-    },
 	notes = [],
 } ) => {
+    const [ rootNote, ...restNotes ] = notes;
 	// We'll have a set of circles positioned clockwise, 
 	// but handpan notes are arranged different to that,
 	// so we need to sort them to match the layout of the instrument.
-    const toneFields = sortForLayout( notes );
+    const toneFields = sortForLayout( restNotes );
 
 	return (
 		<Container>
@@ -134,14 +130,14 @@ const Handpan: React.FC<HandpanProps> = ( {
 				color={ chromaticColors[ 0 ] }
 				bellSize={ 120 }
 			>
-				{ rootNote.note } { rootNote.octave }
+				{ rootNote.tone }{ rootNote.octave }
 			</Ding>
 			{
 				toneFields.map(
 					( note, i )=> {
 						const itemsSize = defaultBellSize;
 						const distance = defaultBellSize;
-						const length = notes.length;
+						const length = restNotes.length;
 						const left = (
 							itemsSize + distance
 						) * (
@@ -160,7 +156,7 @@ const Handpan: React.FC<HandpanProps> = ( {
 						const bellSize = defaultBellSize * ( 
 							// scale the bell sizes
 							1 + ( 
-								( notes.length - notes.indexOf( note ) ) / 20 
+								( restNotes.length - restNotes.indexOf( note ) ) / 20
 							)
 						);
 
@@ -171,9 +167,9 @@ const Handpan: React.FC<HandpanProps> = ( {
 								color={ chromaticColors[ i + 1 ] }
 								// isActive={ includes( highlightedIntervals, note ) || get( pressedNotes, note ) }
 								bellSize={ bellSize }
-								key={ `${ note.note }${ note.octave }` }
+								key={ `${ note.tone }${ note.octave }` }
 							>
-								{ note.note } { note.octave }
+								{ note.tone }{ note.octave }
 							</OffsetBell>
 						);
 					}
