@@ -46,6 +46,17 @@ const Step = styled.div<StepProps>`
     border: 1px solid rgba( 255, 255, 255, ${ props => props.isAtPlayPosition ? 0.6 : 0.2 } );
     flex-grow: 1;
     margin: 2px;
+
+    &:hover {
+        background-color: ${
+            ( { isActive, isAtPlayPosition, isPlaying } ) => (
+                // This is admittedly a bit confusing to the naked eye!
+                // This is basically a 'ternary within a ternary'.
+                // See https://www.javascripttutorial.net/javascript-ternary-operator/ for more details
+                isActive ? ( isAtPlayPosition && isPlaying ? '#7ae' : '#57b' ) : 'rgba( 255, 255, 255, 0.5 )'
+            )
+        }
+    }
 `;
 
 const StepsBar = ( { stepsCount, activeSteps, playPosition, isPlaying } ) => {
