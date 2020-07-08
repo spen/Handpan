@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { includes, times } from 'lodash';
+import { includes, times, without } from 'lodash';
 import { MdPlayArrow, MdPause } from 'react-icons/md';
 
 import useInstrumentsState from '../../state/useInstrumentsState';
@@ -50,16 +50,13 @@ const Step = styled.div<StepProps>`
     &:hover {
         background-color: ${
             ( { isActive, isAtPlayPosition, isPlaying } ) => (
-                // This is admittedly a bit confusing to the naked eye!
-                // This is basically a 'ternary within a ternary'.
-                // See https://www.javascripttutorial.net/javascript-ternary-operator/ for more details
                 isActive ? ( isAtPlayPosition && isPlaying ? '#7ae' : '#57b' ) : 'rgba( 255, 255, 255, 0.5 )'
             )
         }
     }
 `;
 
-const StepsBar = ( { stepsCount, activeSteps, playPosition, isPlaying } ) => {
+const StepsBar = ( { stepsCount, activeSteps, playPosition, isPlaying, onStepClick, laneIndex } ) => {
     return (
         <StepsBarContainer>
             { times( stepsCount, n => (
@@ -67,6 +64,7 @@ const StepsBar = ( { stepsCount, activeSteps, playPosition, isPlaying } ) => {
                     isActive={ includes( activeSteps, n ) }
                     isAtPlayPosition={ playPosition === n }
                     isPlaying={ isPlaying }
+                    onClick={ () => onStepClick( n, laneIndex ) }
                 />
             ) ) }
         </StepsBarContainer>
@@ -97,7 +95,7 @@ export type LaneData = {
     activeSteps: number[],
 };
 
-const Lane = ( { lane, note, playPosition, isPlaying } ) => {
+const Lane = ( { lane, note, playPosition, isPlaying, i, toggleStepState } ) => {
     const { stepsCount, activeSteps } = lane;
 
     React.useEffect(
@@ -127,6 +125,8 @@ const Lane = ( { lane, note, playPosition, isPlaying } ) => {
                 activeSteps={ activeSteps }
                 isPlaying={ isPlaying }
                 playPosition={ playPosition % stepsCount }
+                laneIndex={ i }
+                onStepClick={ toggleStepState }
             />
         </LaneContainer>
     );
@@ -156,7 +156,7 @@ const SequencerControls = ( { bpm, isPlaying, onPause, onPlay } ) => {
 }
 
 const StepSequencer = () => {
-    const [ sequencerState ] = useSequencerState();
+    const [ sequencerState, setSequencerState ] = useSequencerState();
     const [ instrumentState ] = useInstrumentsState();
     const { bpm, lanes } = sequencerState;
     const { notes } = instrumentState[ 0 ]; // use a selector
@@ -191,6 +191,35 @@ const StepSequencer = () => {
     const setPaused = () => setIsPlaying( false );
     const setPlaying = () => setIsPlaying( true );
 
+    // Note: There might be some better way to achieve this effect, but this works
+    // well enough for our purposes.
+    const toggleStepState = ( stepIndex, laneIndex ) => {
+        // Get the state for this lane
+        const laneState = sequencerState.lanes[ laneIndex ];
+        // This just makes `laneState.activeSteps` available as activeSteps
+        const { activeSteps } = laneState;
+        // Figure out if isActive will be true or false...
+        const isActive = includes( activeSteps, stepIndex );
+        // Then, using a ternary operator..., or add the item
+        const newActiveSteps = isActive 
+            // either remove the stepIndex...
+            ? without( activeSteps, stepIndex ) 
+            // or add the stepIndex
+            : [ ...activeSteps, stepIndex ];
+        // Then map over the lanes, finding and updating the activeSteps
+        const newLanes = lanes.map( ( lane, i ) => (
+            laneIndex === i ? { ...lane, activeSteps: newActiveSteps } : lane
+        ) );
+
+        setSequencerState( {
+            // We only want to update the `lanes` value, so we spread (...)
+            // sequencerState in to a new object, then override lanes by
+            // explicitly defining it.
+            ...sequencerState,
+            lanes: newLanes,
+        } );
+    }
+
     // While we're working on things like this, we may want log out some values...
     // Here I'm logging sequencerState and instrumentState in a way that
     // I an see them in an object, with their names...
@@ -212,6 +241,8 @@ const StepSequencer = () => {
                     lane={ lane }
                     note={ notes[ i ] /* This needs improvement, what happens if notes[ 4 ] doesnt exist? Errors */ }
                     playPosition={ playPosition % lane.stepsCount }
+                    i={ i }
+                    toggleStepState={ toggleStepState }
                 />
             ) ) }
 		</Container>
