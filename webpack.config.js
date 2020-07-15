@@ -6,15 +6,15 @@ module.exports = {
   output: {
     path: __dirname + "/public",
     publicPath: "build/",
-    filename: "bundle.js"
+    filename: "bundle.js",
   },
 
   devtool: "source-map",
 
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json"]
+    extensions: [".ts", ".tsx", ".js", ".json"],
   },
-  
+
   devServer: {
     historyApiFallback: true,
   },
@@ -24,23 +24,23 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: { 
+        use: {
           // loader: 'babel-loader',
           loader: "ts-loader",
-        }
+        },
       },
       {
         test: /\.tsx?$/,
         use: [
           {
-            loader: "ts-loader"
-          }
-        ]
+            loader: "ts-loader",
+          },
+        ],
       },
       {
         test: /\.css$/i,
-        use: [ 'css-loader' ],
+        use: ["css-loader"],
       },
-    ]
-  }
+    ],
+  },
 };

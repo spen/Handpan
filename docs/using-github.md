@@ -5,7 +5,6 @@ I intended to making this project open source once we have some good direction f
 
 With that in mind, here are some ways I use GitHub to get around a project and contribute to it.
 
-
 # Contributing
 
 So that we can all make contributions to the project without overwriting eachothers work, we use git (open source version control software) and GitHub (just a company that built a good service around git).
@@ -26,7 +25,6 @@ To do so, check over your work and do `git add .`. This will add all of the new 
 
 # Communication
 
-As mentioned above, always assume commucation is logged. 
+As mentioned above, always assume commucation is logged.
 This is actually great because we can always refer back to a previous comment, or discussion in the history of the project.
 We can talk privately no problem, but we should aim to keep any future-useful discussion either on a PR if it's relevant, or in an issue.
-  

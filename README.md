@@ -28,11 +28,11 @@ Then, in your terminal run this:
 
 This makes a copy on your local machine, but keeps a reference to this project in the cloud (GitHub). In this case we call the GitHub project the 'remote' of the project. We could have many 'remotes' too.
 
-You should have the project now, so `cd` in to it with 
+You should have the project now, so `cd` in to it with
 
 `cd Handpan`
 
-From here run 
+From here run
 
 `yarn`
 
@@ -41,8 +41,6 @@ To install any extra software we need, then do
 `yarn start`
 
 to hopefully bring the project up in your browser automagically
-
-
 
 # Files to ignore (For now)
 
@@ -59,4 +57,3 @@ We all want the same thing, the ability to work without stress from anywhere whe
 If we want, we could record some video conferences too, I think people would love watching it, but I'm happy not to do that either, we'll benefit either way around.
 
 For now I've started off an [issue thread here](https://github.com/spen/Handpan/issues/1) - think of this as a place for a discussion around the app itself... By keeping an official discussion public as you do with an issue, your helping others in the community - which you should always be trying to do... it's rewarding - and helps when someone else joins the project, as they can then see all the decisions, so it's good to assume that there's value in recording as much relevant talk and decision making as possible.
-
