@@ -1,5 +1,6 @@
-import useStickyState from '../../lib/useStickyState';
-import defaultInstrument from './defaultInstrument';
+import * as React from "react";
+import useStickyState from "../../lib/useStickyState";
+import defaultInstrument from "./defaultInstrument";
 
 // The point of this file is to allow other files a simple way to grab
 // the data held locally for the instruments state.
@@ -63,8 +64,11 @@ export type Instruments = Instrument[];
 // For now, I'm leaving the return value type as any[], which just means "an array of items of any types"
 // we'll come back to this and be more specific and well defined. 
 // The more defined we make the system the smoother it'll run.
-export default function( defaultValue: Instruments = DEFAULT_VALUE ): any[] {
-    return useStickyState( defaultValue, INSTRUMENTS_STICKY_KEY );
+export default function (defaultValue: Instruments = DEFAULT_VALUE): any[] {
+    return React.useState( defaultValue );
+    // TODO: Consider a better way than below to allow for state to be saved locally
+    // as a back up, and eventually to a db per user.
+//   return useStickyState(defaultValue, INSTRUMENTS_STICKY_KEY);
 }
 
 // A note on file names and the differences between jsx (& tsx) and js (& ts): 
