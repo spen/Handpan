@@ -1,10 +1,10 @@
-import * as React from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
-import 'reset-css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import * as React from "react";
+import styled, { createGlobalStyle } from "styled-components";
+import "reset-css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import HomePage from './Pages/Home';
-import Layout from './components/Layout';
+import HomePage from "./Pages/Home";
+import Layout from "./components/Layout";
 
 const GlobalStyle = createGlobalStyle`
   body {
