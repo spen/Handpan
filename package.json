@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prettier": "prettier --write .",
     "start": "webpack-dev-server --open --hot --mode development",
     "build": "webpack"
   },
