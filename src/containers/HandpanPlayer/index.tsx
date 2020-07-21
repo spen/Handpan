@@ -9,12 +9,10 @@ const Container = styled.div`
   position: relative;
 `;
 
-export const HandpanPlayer = ({}) => {
-  return (
-    <Container>
-      <Instrument />
-    </Container>
-  );
-};
+export const HandpanPlayer = ({}) => (
+  <Container>
+    <Instrument />
+  </Container>
+);
 
 export default HandpanPlayer;

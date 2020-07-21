@@ -1,12 +1,12 @@
 import { simplify, enharmonic } from "@tonaljs/note";
 
-type easing = "b" | "#";
+type Accidental = "b" | "#";
 
 // A#, # => A#
 // A, # => A
 // Bb, # => A#
 
-const simplifyNoteName = (noteName: string, accidentaltype: easing = "#") =>
+const simplifyNoteName = (noteName: string, accidentaltype: Accidental = "#") =>
   simplify(
     noteName.indexOf(accidentaltype) >= 1 ? noteName : enharmonic(noteName)
   );
