@@ -31,12 +31,6 @@ export const App = () => (
     <Router>
       <Layout>
         <Switch>
-          {/* <Route path="/handpan-scales">
-                        <HandpanScalesPage />
-                    </Route>
-                    <Route path="/handpan">
-                        <HandpanMainPage />
-                    </Route> */}
           <Route path="/">
             <HomePage />
           </Route>

@@ -1,7 +1,5 @@
-import { note, transpose, distance, interval } from "@tonaljs/tonal";
-import { map, invoke, get, last, find, range, first } from "lodash";
-
-// Ignore this file for now
+import { distance } from "@tonaljs/tonal";
+import { map, first } from "lodash";
 
 export const handpanScales = [
   {
@@ -26,7 +24,7 @@ export const handpanScales = [
   },
   {
     name: "Pygmy",
-    notes: ["F2", "G2", "Ab2", "C3", "Eb3", "F3", "G3", "Ab3", "C4"],
+    notes: ["F2", "G2", "Ab2", "C3", "Eb3", "F3", "G3", "C4"],
   },
 ];
 
