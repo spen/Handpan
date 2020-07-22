@@ -10,6 +10,7 @@
   "author": "Spen",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
     "@tonaljs/chord": "^3.3.0",
     "@tonaljs/chord-dictionary": "^3.3.0",
     "@tonaljs/interval": "^3.2.3",
