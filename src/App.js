@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import HomePage from "./Pages/Home";
 import Layout from "./components/Layout";
+import { InstrumentStateProvider } from "./state/useInstrumentsState/context";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -28,14 +29,10 @@ const Wrapper = styled.div`
 export const App = () => (
   <Wrapper>
     <GlobalStyle />
-    <Router>
+    <InstrumentStateProvider>
       <Layout>
-        <Switch>
-          <Route path="/">
-            <HomePage />
-          </Route>
-        </Switch>
+        <HomePage />
       </Layout>
-    </Router>
+    </InstrumentStateProvider>
   </Wrapper>
 );

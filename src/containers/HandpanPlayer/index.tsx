@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 
 import Instrument from "../../components/Instrument";
+import HandpanForm from "../HandpanForm";
 
 const Container = styled.div`
   max-width: 960px;
@@ -12,6 +13,7 @@ const Container = styled.div`
 export const HandpanPlayer = ({}) => (
   <Container>
     <Instrument />
+    <HandpanForm />
   </Container>
 );
 
