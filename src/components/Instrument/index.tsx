@@ -3,7 +3,7 @@ import {first} from "lodash";
 import styled from "styled-components";
 
 import Handpan from "../../components/Handpan";
-import useInstrumentState from "../../state/useInstrumentsState";
+import InstrumentContext from "../../state/useInstrumentsContext";
 
 const Container = styled.div`
   max-width: 960px;
@@ -17,15 +17,16 @@ const Heading = styled.h2`
   text-transform: capitalize;
 `;
 
-const Instrument = () => {
-  const [instrumentState] = useInstrumentState();
-  const {name, notes} = instrumentState;
-  const rootNote = first(notes);
 
+const Instrument = () => {
+  const [state] = React.useContext(InstrumentContext);
+  const {name, notes} = state;
+  const rootNote = first(notes);
+  
   return (
     <Container>
       <Heading>{rootNote.tone} {name}</Heading>
-      <Handpan notes={instrumentState.notes} />
+      <Handpan notes={notes} />
     </Container>
   );
 };
