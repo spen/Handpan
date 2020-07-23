@@ -1,10 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { find, first } from 'lodash';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import { Select, Box, FormField } from 'grommet';
+import { grommet } from 'grommet/themes';
 
 import chromaticNotes from '../../constants/chromaticNotes';
 import handpanScales from '../../constants/handpanScales';
@@ -12,7 +10,8 @@ import transposeScale from '../../lib/transposeScale';
 import InstrumentContext from "../../state/useInstrumentsContext";
 
 const Container = styled.div`
-    maw-width: 960px;
+    max-width: 960px;
+    flex-grow: 1;
 `;
 
 const OCTAVES = [ 2, 3, 4, 5 ];
@@ -38,9 +37,9 @@ const HandpanForm = ( {} ) => {
     const [ rootOctave, setRootOctave ] = React.useState( octave );
     const [ scale, setScale ] = React.useState( name );
 
-    const handleChangeRootNote = event => {setRootNote( event.target.value );}
-    const handleChangeRootOctave = event => {setRootOctave(event.target.value);}
-    const handleChangeScale = event => {setScale(event.target.value);}
+    const handleChangeRootNote = event => {setRootNote( event.value );}
+    const handleChangeRootOctave = event => {setRootOctave(event.value);}
+    const handleChangeScale = event => {setScale(event.value);}
 
     React.useEffect(
         () => {
@@ -53,51 +52,36 @@ const HandpanForm = ( {} ) => {
 
     return (
         <Container>
-            <FormControl>
-                <InputLabel id="root-note-select-label">Root Note</InputLabel>
+            <Box>
+            <FormField label="Root Note" htmlFor="root-note-select">
                 <Select
-                    labelId="root-note-select-label"
                     id="root-note-select"
                     value={rootNote}
                     onChange={handleChangeRootNote}
-                >
-                    {
-                        chromaticNotes.map( note => (
-                            <MenuItem value={ note }>{ note }</MenuItem>
-                        ) )
-                    }
-                </Select>
-            </FormControl>
-            <FormControl>
-                <InputLabel id="root-octave-select-label">Root Octave</InputLabel>
+                    options={chromaticNotes}
+                />
+            </FormField>
+            </Box>
+            <Box>
+                <FormField label="Root Octave" htmlFor="root-octave-select">
                 <Select
-                    labelId="root-octave-select-label"
                     id="root-octave-select"
                     value={rootOctave}
                     onChange={handleChangeRootOctave}
-                >
-                    {
-                        OCTAVES.map( octaveNumber => (
-                            <MenuItem value={ octaveNumber }>{ octaveNumber }</MenuItem>
-                        ) )
-                    }
-                </Select>
-            </FormControl>
-            <FormControl>
-                <InputLabel id="scale-select-label">Scale</InputLabel>
+                    options={OCTAVES}
+                />
+                </FormField>
+            </Box>
+            <Box>
+                <FormField label="Scale" htmlFor="scale-select">
                 <Select
-                    labelId="scale-select-label"
                     id="scale-select"
                     value={scale}
                     onChange={handleChangeScale}
-                >
-                    {
-                        handpanScales.map( handpanScale => (
-                            <MenuItem value={ handpanScale.name }>{ handpanScale.name }</MenuItem>
-                        ) )
-                    }
-                </Select>
-            </FormControl>
+                    options={handpanScales.map( scale => scale.name)}
+                />
+                </FormField>
+            </Box>
         </Container>
     );
 }
