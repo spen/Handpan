@@ -2,9 +2,10 @@ import * as React from "react";
 import styled from "styled-components";
 
 import HandpanPlayer from "../containers/HandpanPlayer";
+import StepSequencer from "../components/StepSequencer";
 
 const Container = styled.div`
-  max-width: 960px;
+  max-width: 1200px;
   margin: 0 auto;
   position: relative;
 `;
@@ -12,6 +13,7 @@ const Container = styled.div`
 export const HomePage = ({}) => (
   <Container>
     <HandpanPlayer />
+    <StepSequencer />
   </Container>
 );
 
