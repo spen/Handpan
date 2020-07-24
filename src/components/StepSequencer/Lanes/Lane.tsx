@@ -26,9 +26,10 @@ interface LaneProps {
     note: NoteType,
     playPosition: number,
     isPlaying: boolean,
+    laneIndex: number,
 };
 
-const Lane = ( { lane, note, playPosition, isPlaying }: LaneProps ) => {
+const Lane = ( { lane, laneIndex, note, playPosition, isPlaying }: LaneProps ) => {
     const { stepsCount, activeSteps } = lane;
 
     React.useEffect(
@@ -54,6 +55,7 @@ const Lane = ( { lane, note, playPosition, isPlaying }: LaneProps ) => {
                 activeSteps={ activeSteps }
                 isPlaying={ isPlaying }
                 playPosition={ playPosition % stepsCount }
+                laneIndex={ laneIndex }
             />
         </LaneContainer>
     );

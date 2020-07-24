@@ -25,6 +25,7 @@ const Lanes = ( { lanes, isPlaying, notes, playPosition }: LanesProps ) => (
             <Lane
                 isPlaying={ isPlaying }
                 lane={ lane }
+                laneIndex={ i }
                 note={ notes[ i ] /* This needs improvement, what happens if notes[ 4 ] doesnt exist? Errors */ }
                 playPosition={ playPosition % lane.stepsCount }
             />
