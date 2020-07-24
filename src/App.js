@@ -8,6 +8,7 @@ import { grommet } from 'grommet/themes'
 import HomePage from "./Pages/Home";
 import Layout from "./components/Layout";
 import { InstrumentStateProvider } from "./state/useInstrumentsContext";
+import { SequencerStateProvider } from "./state/useSequencerContext";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -44,10 +45,12 @@ export const App = () => (
     <GlobalStyle />
     <Grommet theme={ theme }>
         <InstrumentStateProvider>
+        <SequencerStateProvider>
             <Layout>
                 <HomePage />
             </Layout>
         </InstrumentStateProvider>
+        </SequencerStateProvider>
     </Grommet>
   </Wrapper>
 );
