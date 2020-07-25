@@ -3,6 +3,8 @@ import styled from "styled-components";
 import * as Tone from "tone";
 
 import InstrumentNote from "../../state/useInstrumentsContext";
+import { stringifyNote } from "../../lib/note";
+import handpanSampler from "../../lib/handpanSampler";
 
 const Container = styled.div`
   display: flex;
@@ -103,7 +105,11 @@ const Handpan: React.FC<HandpanProps> = ({
   return (
     <Container>
       <Framer>
-        <Ding color={chromaticColors[0]} bellSize={120}>
+        <Ding 
+            color={chromaticColors[0]}
+            bellSize={120}
+            onClick={ () => handpanSampler.triggerAttack( stringifyNote( rootNote ) ) }
+        >
           {rootNote.tone}{rootNote.octave}
         </Ding>
         {toneFields.map((note, i) => {
@@ -138,6 +144,7 @@ const Handpan: React.FC<HandpanProps> = ({
               color={chromaticColors[i + 1]}
               bellSize={bellSize}
               key={`${note.tone}${note.octave}`}
+              onClick={ () => handpanSampler.triggerAttack( stringifyNote( note ) ) }
             >
               {note.tone}{note.octave}
             </OffsetBell>

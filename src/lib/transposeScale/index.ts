@@ -3,14 +3,14 @@ import {first, isEmpty} from 'lodash';
 
 import {stringifyNote} from '../../lib/note';
 
-type Note = {
+type InstrumentNote = {
     tone: string;
     octave: number;
 }
 
 interface TransposeScaleProps {
-    root: Note,
-    scale: Note[],
+    root: InstrumentNote,
+    scale: InstrumentNote[],
 }
 
 export default function ({root, scale}:TransposeScaleProps) {
