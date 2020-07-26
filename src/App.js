@@ -29,25 +29,57 @@ const Wrapper = styled.div`
 `;
 
 const theme = {
-    ...grommet,
-    select: {
-        background: 'white',
-        icons: {
-            color: '#345'
-        }
-
+  ...grommet,
+  global: {
+    colors: {
+      blue: "#359",
+      blueBright: '#3c7af6',
+      darkBakground: "#202832",
+      focus: "blueBright",
+    }
+  },
+  formField: {
+    border: 'none',
+    label: {
+      'color': 'white',
+      margin: {
+        bottom: 'none',
+        top: 'small',
+        left: 'small'
+      }
     },
+  },
+  select: {
+    border: '1px solid white',
+    background: {
+      'color': 'darkBakground'
+    },
+    options: {
+      container: {
+        background: {
+          'color': 'darkBakground',
+          'opacity': '0.9'
+        },
+      },
+      text: {
+        'color': 'white',
+      }
+    },
+    icons: {
+      color: 'white'
+    },
+  },
 }
 
 export const App = () => (
   <Wrapper>
     <GlobalStyle />
-    <Grommet theme={ theme }>
-        <InstrumentStateProvider>
-            <Layout>
-                <HomePage />
-            </Layout>
-        </InstrumentStateProvider>
+    <Grommet theme={theme}>
+      <InstrumentStateProvider>
+        <Layout>
+          <HomePage />
+        </Layout>
+      </InstrumentStateProvider>
     </Grommet>
   </Wrapper>
 );
