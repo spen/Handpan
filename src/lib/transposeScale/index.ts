@@ -1,19 +1,19 @@
-import {Note, Interval} from '@tonaljs/tonal';
-import {first, isEmpty} from 'lodash';
+import { Note, Interval } from '@tonaljs/tonal';
+import { first, isEmpty } from 'lodash';
 
-import {stringifyNote} from '../../lib/note';
+import { stringifyNote } from '../../lib/note';
 
-type Note = {
+type instrumentNote = {
     tone: string;
     octave: number;
 }
 
 interface TransposeScaleProps {
-    root: Note,
-    scale: Note[],
+    root: instrumentNote,
+    scale: instrumentNote[],
 }
 
-export default function ({root, scale}:TransposeScaleProps) {
+export default function ({ root, scale }: TransposeScaleProps) {
     if (isEmpty(scale)) {
         return [];
     }
@@ -23,7 +23,7 @@ export default function ({root, scale}:TransposeScaleProps) {
     const transposeNote = note => {
         const transposedNote = Note.transpose(note, rootNoteDistance)
 
-        return  {
+        return {
             tone: Note.pitchClass(transposedNote),
             octave: Note.octave(transposedNote),
         };
