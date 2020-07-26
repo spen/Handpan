@@ -39,18 +39,24 @@ const theme = {
     }
   },
   formField: {
+    extend: `
+    flex-direction: row;
+    align-items: center;
+    label {
+      width: 65%;
+    }
+    `,
     border: 'none',
     label: {
       'color': 'white',
       margin: {
         bottom: 'none',
-        top: 'small',
+        top: 'none',
         left: 'small'
       }
     },
   },
   select: {
-    border: '1px solid white',
     background: {
       'color': 'darkBakground'
     },
