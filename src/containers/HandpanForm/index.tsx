@@ -27,6 +27,7 @@ const calculateInstrumentState = ({ rootNote, rootOctave, name }) => ({
     })
 });
 
+
 const HandpanForm = ({ }) => {
     const [state, setState] = React.useContext(InstrumentContext);
 
@@ -52,9 +53,7 @@ const HandpanForm = ({ }) => {
 
     return (
         <Container>
-            <Box border={{
-                "color": "#359", "size": "medium", 'style': "solid"
-            }} >
+            <Box border={{ "color": "#359", "size": "medium", 'style': "solid" }} pad={{ "vertical": "0.5rem" }}>
                 <FormField label="Root Note" htmlFor="root-note-select" pad>
                     <Box border={{ "color": "#359" }}>
                         <Select
