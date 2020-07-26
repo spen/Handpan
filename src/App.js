@@ -43,6 +43,7 @@ const theme = {
     extend: `
     flex-direction: row;
     align-items: center;
+    margin:0;
     label {
       width: 65%;
     }
