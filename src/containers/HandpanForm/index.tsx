@@ -54,7 +54,7 @@ const HandpanForm = ({ }) => {
     return (
         <Container>
             <Box border={{ "color": "#359", "size": "medium", 'style': "solid" }} pad={{ "vertical": "0.5rem" }}>
-                <FormField label="Root Note" htmlFor="root-note-select" pad>
+                <FormField name="root-note-select" label="Root Note" htmlFor="root-note-select" pad>
                     <Box border={{ "color": "#359" }}>
                         <Select
                             id="root-note-select"
@@ -65,7 +65,7 @@ const HandpanForm = ({ }) => {
                         />
                     </Box>
                 </FormField>
-                <FormField label="Root Octave" htmlFor="root-octave-select" pad>
+                <FormField name="root-octave-select" label="Root Octave" htmlFor="root-octave-select" pad>
                     <Box border={{ "color": "#359" }}>
                         <Select
                             id="root-octave-select"
@@ -75,7 +75,7 @@ const HandpanForm = ({ }) => {
                         />
                     </Box>
                 </FormField>
-                <FormField label="Scale" htmlFor="scale-select" pad>
+                <FormField name="scale-select" label="Scale" htmlFor="scale-select" pad>
                     <Box border={{ "color": "#359" }}>
                         <Select
                             id="scale-select"
