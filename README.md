@@ -10,11 +10,7 @@ A stretch goal would be allow them to record their handpan player and detect the
 
 # The project so far...
 
-Here's our starting point
-
-![Screen shot](https://raw.githubusercontent.com/spen/Handpan/master/2020-07-02.png?token=ABBCOWVPSUQHPF5BLYPE2W27A4KL6)
-
-A simple handpan component made with react, that doesn't really do much but visualize scale data as a handpan. Humble beginnings.
+![Screen shot](./2020-07-28.png?raw=true)
 
 # Getting Up & Running
 
