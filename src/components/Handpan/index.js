@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import * as Tone from "tone";
 
-import InstrumentNote from "../../state/useInstrumentsState";
+import InstrumentNote from "../../state/useInstrumentsContext";
 
 const Container = styled.div`
   display: flex;
