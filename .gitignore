@@ -1,7 +1,5 @@
 node_modules
 
-public/bundle.js
-public/bundle.js.map
 handpan-samples
 
 yarn-error.log
