@@ -30,14 +30,53 @@ const Wrapper = styled.div`
 `;
 
 const theme = {
-    ...grommet,
-    select: {
-        background: 'white',
-        icons: {
-            color: '#345'
-        }
-
+  ...grommet,
+  global: {
+    colors: {
+      blue: "#359",
+      blueBright: '#3c7af6',
+      darkBakground: "#202832",
+      focus: "blueBright",
+    }
+  },
+  formField: {
+    extend: `
+    flex-direction: row;
+    align-items: center;
+    margin:0;
+    label {
+      width: 65%;
+    }
+    `,
+    border: 'none',
+    label: {
+      'color': 'white',
+      margin: {
+        bottom: 'none',
+        top: 'none',
+        left: 'small'
+      }
     },
+  },
+  select: {
+    background: {
+      'color': 'darkBakground'
+    },
+    options: {
+      container: {
+        background: {
+          'color': 'darkBakground',
+          'opacity': '0.9'
+        },
+      },
+      text: {
+        'color': 'white',
+      }
+    },
+    icons: {
+      color: 'white'
+    },
+  },
 }
 
 export const App = () => (
