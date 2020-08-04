@@ -1,8 +1,9 @@
 import * as React from "react";
 import styled from "styled-components";
-import * as Tone from "tone";
 
-import InstrumentNote from "../../state/useInstrumentsContext";
+import { InstrumentNote } from "../../state/useInstrumentsContext";
+import handpanSampler from '../../lib/handpanSampler';
+import { stringifyNote } from '../../lib/note';
 
 const Container = styled.div`
   display: flex;
@@ -52,13 +53,15 @@ const Bell = styled.div <BellProps>`
 	}
 `;
 
-const Ding = styled(Bell)`
-  transform: translate(-50%, -50%);
-`;
+interface OffsettableProps {
+    offsetX: number;
+    offsetY: number;
+}
 
-const OffsetBell = styled(Bell)`
-  left: ${(props) => props.offsetX}px;
-  top: ${(props) => props.offsetY}px;
+const Offsettable = styled.div<OffsettableProps>`
+    left: ${(props) => props.offsetX}px;
+    top: ${(props) => props.offsetY}px;
+    position: absolute;
 `;
 
 // For now, I don't mind the repeatition.
@@ -86,6 +89,10 @@ const sortForLayout = (collection) =>
     []
   );
 
+const createPlaySoundEvent = ( note: InstrumentNote ) => () => {
+    handpanSampler.loaded && handpanSampler.triggerAttack( stringifyNote( note ) );
+}
+
 interface HandpanProps {
   notes: InstrumentNote[];
 };
@@ -103,9 +110,14 @@ const Handpan: React.FC<HandpanProps> = ({
   return (
     <Container>
       <Framer>
-        <Ding color={chromaticColors[0]} bellSize={120}>
+        <Bell 
+            color={chromaticColors[0]} 
+            bellSize={120}
+            onClick={ createPlaySoundEvent( rootNote ) }
+            style={ { transform: 'translate(-50%, -50%)' } }
+        >
           {rootNote.tone}{rootNote.octave}
-        </Ding>
+        </Bell>
         {toneFields.map((note, i) => {
           const itemsSize = defaultBellSize;
           const distance = defaultBellSize;
@@ -132,15 +144,19 @@ const Handpan: React.FC<HandpanProps> = ({
             (1 + (length - notes.indexOf(note)) / 20);
 
           return (
-            <OffsetBell
-              offsetX={left}
-              offsetY={top}
-              color={chromaticColors[i + 1]}
-              bellSize={bellSize}
-              key={`${note.tone}${note.octave}`}
-            >
-              {note.tone}{note.octave}
-            </OffsetBell>
+              <Offsettable
+                offsetX={left}
+                offsetY={top}
+              >
+                <Bell
+                    color={chromaticColors[i + 1]}
+                    bellSize={bellSize}
+                    key={`${note.tone}${note.octave}`}
+                    onClick= { createPlaySoundEvent( note ) }
+                >
+                    {note.tone}{note.octave}
+                </Bell>
+              </Offsettable>
           );
         })}
       </Framer>
