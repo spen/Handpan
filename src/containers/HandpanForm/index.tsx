@@ -9,11 +9,6 @@ import handpanScales from '../../constants/handpanScales';
 import transposeScale from '../../lib/transposeScale';
 import InstrumentContext from "../../state/useInstrumentsContext";
 
-const Container = styled.div`
-    max-width: 960px;
-    flex-grow: 1;
-`;
-
 const OCTAVES = [2, 3, 4, 5];
 
 const calculateInstrumentState = ({ rootNote, rootOctave, name }) => ({
@@ -52,43 +47,37 @@ const HandpanForm = ({ }) => {
     );
 
     return (
-        <Container>
+        <Box>
             <Form id="scale-options">
-                <Box border={{ "color": "#359", "size": "medium", 'style': "solid" }} pad={{ "vertical": "0.5rem" }}>
-                    <FormField label="Root Note" htmlFor="root-note-select" pad>
-                        <Box border={{ "color": "#359" }}>
-                            <Select
-                                id="root-note-select"
-                                value={rootNote}
-                                onChange={handleChangeRootNote}
-                                options={chromaticNotes}
+                <Box>
+                    <FormField label="Root Note" htmlFor="root-note-select">
+                        <Select
+                            id="root-note-select"
+                            value={rootNote}
+                            onChange={handleChangeRootNote}
+                            options={chromaticNotes}
 
-                            />
-                        </Box>
+                        />
                     </FormField>
-                    <FormField label="Root Octave" htmlFor="root-octave-select" pad>
-                        <Box border={{ "color": "#359" }}>
-                            <Select
-                                id="root-octave-select"
-                                value={rootOctave}
-                                onChange={handleChangeRootOctave}
-                                options={OCTAVES}
-                            />
-                        </Box>
+                    <FormField label="Root Octave" htmlFor="root-octave-select">
+                        <Select
+                            id="root-octave-select"
+                            value={rootOctave}
+                            onChange={handleChangeRootOctave}
+                            options={OCTAVES}
+                        />
                     </FormField>
-                    <FormField label="Scale" htmlFor="scale-select" pad>
-                        <Box border={{ "color": "#359" }}>
-                            <Select
-                                id="scale-select"
-                                value={scale}
-                                onChange={handleChangeScale}
-                                options={handpanScales.map(scale => scale.name)}
-                            />
-                        </Box>
+                    <FormField label="Scale" htmlFor="scale-select">
+                        <Select
+                            id="scale-select"
+                            value={scale}
+                            onChange={handleChangeScale}
+                            options={handpanScales.map(scale => scale.name)}
+                        />
                     </FormField>
                 </Box>
             </Form>
-        </Container >
+        </Box>
     );
 }
 

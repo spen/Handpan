@@ -29,48 +29,40 @@ const Wrapper = styled.div`
   align-content: flex-start;
 `;
 
+
 const theme = {
   ...grommet,
   global: {
     colors: {
       blue: "#359",
       blueBright: '#3c7af6',
-      darkBakground: "#202832",
-      focus: "blueBright",
-    }
+      darkBackground: "#202832",
+      selected: 'blueBright',
+    },
+    input: {
+        padding: '16px',
+    },
   },
   formField: {
-    extend: `
-    flex-direction: row;
-    align-items: center;
-    margin:0;
-    label {
-      width: 65%;
-    }
-    `,
     border: 'none',
     label: {
-      'color': 'white',
-      margin: {
-        bottom: 'none',
-        top: 'none',
-        left: 'small'
-      }
+      color: 'white',
+      marginBotton: '-20px',
     },
   },
   select: {
     background: {
-      'color': 'darkBakground'
+      color: 'blue'
     },
     options: {
       container: {
         background: {
-          'color': 'darkBakground',
-          'opacity': '0.9'
+          'color': 'darkBackground',
         },
-      },
+        },
+        padding: '20px',
       text: {
-        'color': 'white',
+        color: 'white',
       }
     },
     icons: {
