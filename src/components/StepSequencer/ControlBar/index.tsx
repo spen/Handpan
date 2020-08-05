@@ -43,9 +43,8 @@ const ControlBar = ( { isPlaying, onPause, onPlay }: ControlBarProps ) => {
                     min={ 4 }
                     value={sequencerState.bpm}
                     onChange={event => setSequencerState(setTempo(sequencerState, event.target.value))}
-                    style={{ width: '100px' }}
+                    style={{ width: '100px', border: 'none' }}
                     color="blue"
-                    border="none"
                 />
             </Box>
         </Box>

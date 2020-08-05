@@ -5,14 +5,17 @@ import { InstrumentNote } from "../../state/useInstrumentsContext";
 import handpanSampler from '../../lib/handpanSampler';
 import { stringifyNote, getColorForNote } from '../../lib/note';
 
-const Container = styled.div`
+interface ContainerProps {
+    size: number;
+  }
+
+const Container = styled.div<ContainerProps>`
   display: flex;
   flex-direction: row;
-  width: 100%;
   background-color: transparent;
   border: 10px solid #3c7af6;
-  height: 500px;
-  width: 500px;
+  height: ${props => props.size}px;
+  width: ${props => props.size}px;
   position: relative;
   border-radius: 50%;
   overflow: hidden;
@@ -33,7 +36,7 @@ interface BellProps {
   isActive?: boolean;
 }
 
-const Bell = styled.div <BellProps>`
+const Bell = styled.div<BellProps>`
 	position: absolute;
 	border-radius: 50%;
 	border: 2px solid #359;
@@ -91,41 +94,41 @@ const Handpan: React.FC<HandpanProps> = ({
   // so we need to sort them to match the layout of the instrument.
   const toneFields = sortForLayout(restNotes);
 
+    const size = 420;
+
   return (
-    <Container>
+    <Container size={ size }>
       <Framer>
         <Bell 
             color={ getColorForNote( rootNote ) } 
-            bellSize={120}
+            bellSize={ 0.25 * size }
             onClick={ createPlaySoundEvent( rootNote ) }
             style={ { transform: 'translate(-50%, -50%)' } }
         >
           {rootNote.tone}{rootNote.octave}
         </Bell>
         {toneFields.map((note, i) => {
-          const itemsSize = defaultBellSize;
-          const distance = defaultBellSize;
-          const length = toneFields.length;
+          const numberOfToneFields = toneFields.length;
           const left =
-            (itemsSize + distance) *
+            (size / 3.2) *
             -1 *
             // TODO: 0.79 and 0.63 seem about right at for the examples used,
             // but we could do with proper math here to place the bells at the right place
             Math.cos(
-              (length % 2 ? -0.79 : -0.63) * Math.PI -
-                (2 * Math.PI * (i * 1)) / length
+              (numberOfToneFields % 2 ? -0.79 : -0.63) * Math.PI -
+                (2 * Math.PI * (i * 1)) / numberOfToneFields
             );
           const top =
-            (itemsSize + distance) *
+          (size / 3.2) *
             Math.sin(
-              (length % 2 ? -0.79 : -0.63) * Math.PI -
-                (2 * Math.PI * (i * 1)) / length
+              (numberOfToneFields % 2 ? -0.79 : -0.63) * Math.PI -
+                (2 * Math.PI * (i * 1)) / numberOfToneFields
             );
 
           const bellSize =
-            defaultBellSize *
+            ( ( defaultBellSize / 500 ) * size ) *
             // scale the bell sizes
-            (1 + (length - notes.indexOf(note)) / 20);
+            (1 + (numberOfToneFields - notes.indexOf(note)) / 20);
 
           return (
               <Offsettable
