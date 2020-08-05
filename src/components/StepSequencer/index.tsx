@@ -1,17 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Box } from 'grommet';
 
 import InstrumentContext from "../../state/useInstrumentsContext";
 import SequencerContext from "../../state/useSequencerContext";
 import Lanes from './Lanes';
 import ControlBar from './ControlBar';
-
-const Container = styled.div`
-	margin: 0 auto;
-    position: relative;
-    border: 4px solid #359;
-    margin: 20px;
-`;
 
 const StepSequencer = () => {
     const [sequencerState] = React.useContext(SequencerContext);
@@ -50,12 +44,11 @@ const StepSequencer = () => {
     const setPlaying = () => setIsPlaying( true );
 
 	return (
-		<Container>
+		<Box fill background="darkBackground" elevation="medium">
             <ControlBar
                 isPlaying={ isPlaying }
                 onPause={ setPaused }
                 onPlay={ setPlaying }
-                bpm={ bpm }
             />
             <Lanes
                 lanes={ lanes }
@@ -63,7 +56,7 @@ const StepSequencer = () => {
                 notes={ notes }
                 playPosition={ playPosition }
             />
-		</Container>
+		</Box>
 	);
 };
 
