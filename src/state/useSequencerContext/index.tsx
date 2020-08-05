@@ -30,6 +30,11 @@ export const SequencerStateProvider = ({children}) => {
     );
 };
 
+export const setTempo = (state, bpm) => ({
+    ...state,
+    bpm,
+});
+
 export const toggleStep = (state, {laneIndex, stepIndex}) => {
     // Get the state for this lane
     const laneState = state.lanes[laneIndex];
@@ -53,5 +58,7 @@ export const toggleStep = (state, {laneIndex, stepIndex}) => {
         lanes: newLanes,
     }
 }
+
+
 
 export default SequencerContext;

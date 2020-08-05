@@ -1,36 +1,55 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { MdPlayArrow, MdPause } from 'react-icons/md';
+import { Box, Button, FormField, TextInput } from 'grommet';
 
-const IconButton = styled.span`
-    background-color: rgba( 0, 0, 0, 0.2 );
+import SequencerContext, { setTempo } from "../../../state/useSequencerContext";
+
+const PlayIcon = styled( MdPlayArrow )`
+    display: flex; !important
 `;
 
-const ControlBarContainer = styled.div`
-    background-color: rgba( 100, 100, 100, 0.5 );
-    padding; 4px;
-    border: 2px solid rgba( 0, 0, 0, 0.2 );
+const PauseIcon = styled( MdPause )`
+    display: flex;
 `;
+
 
 interface ControlBarProps {
-    bpm: number,
     isPlaying: boolean,
     onPlay: () => void,
     onPause: () => void,
 };
 
-// TODOs: Lots of improvement to be made here
-const ControlBar = ( { bpm, isPlaying, onPause, onPlay }: ControlBarProps ) => {
+const ControlBar = ( { isPlaying, onPause, onPlay }: ControlBarProps ) => {
+    const [sequencerState, setSequencerState] = React.useContext(SequencerContext);
+    
     return (
-        <ControlBarContainer>
-            <IconButton onClick={ isPlaying ? onPause : onPlay }>
-                { isPlaying ? <MdPause /> : <MdPlayArrow /> }
-            </IconButton>
-            <span>
-                BPM: { bpm }
-            </span>
-        </ControlBarContainer>
-    )
+        <Box background="blueBright" flex direction="row" style={{ alignItems: 'center', borderRadius: '12px 12px 0 0' }} pad="xsmall">
+            <Button 
+                label={ isPlaying ? <MdPause /> : <MdPlayArrow /> }
+                onClick={ isPlaying ? onPause : onPlay } 
+                fill="vertical"
+                color="white"
+                style={ { display: 'flex' } }
+            >
+                { isPlaying ? <PauseIcon /> : <PlayIcon /> }
+            </Button>
+            <FormField label="Tempo:" htmlFor="bpm-input" margin="none" style={{display: 'flex', marginRight: '2px' }} />
+            <Box background="blue">
+                <TextInput
+                    id="bpm-input"
+                    type="number"
+                    max={ 300 }
+                    min={ 4 }
+                    value={sequencerState.bpm}
+                    onChange={event => setSequencerState(setTempo(sequencerState, event.target.value))}
+                    style={{ width: '100px' }}
+                    color="blue"
+                    border="none"
+                />
+            </Box>
+        </Box>
+    );
 }
 
 export default ControlBar;

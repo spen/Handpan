@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 import { InstrumentNote } from "../../state/useInstrumentsContext";
 import handpanSampler from '../../lib/handpanSampler';
-import { stringifyNote } from '../../lib/note';
+import { stringifyNote, getColorForNote } from '../../lib/note';
 
 const Container = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
   background-color: transparent;
-  border: 10px solid #359;
+  border: 10px solid #3c7af6;
   height: 500px;
   width: 500px;
   position: relative;
@@ -64,22 +64,6 @@ const Offsettable = styled.div<OffsettableProps>`
     position: absolute;
 `;
 
-// For now, I don't mind the repeatition.
-// I doubt this will be the final way of handling the interval colors.
-const chromaticColors = [
-  "#FF6B6B",
-  "#FF8E72",
-  "#FFAF87",
-  "#FFAB5E",
-  "#FFE66D",
-  "#DCF799",
-  "#ABE188",
-  "#67E5D2",
-  "#67C5E5",
-  "#678FE5",
-  "#8267E5",
-  "#EE92C2",
-];
 
 // given a list of linear notes, return an order that fits the handpan  (Right, left, right left etc.)
 const sortForLayout = (collection) =>
@@ -111,7 +95,7 @@ const Handpan: React.FC<HandpanProps> = ({
     <Container>
       <Framer>
         <Bell 
-            color={chromaticColors[0]} 
+            color={ getColorForNote( rootNote ) } 
             bellSize={120}
             onClick={ createPlaySoundEvent( rootNote ) }
             style={ { transform: 'translate(-50%, -50%)' } }
@@ -149,7 +133,7 @@ const Handpan: React.FC<HandpanProps> = ({
                 offsetY={top}
               >
                 <Bell
-                    color={chromaticColors[i + 1]}
+                    color={getColorForNote( note )}
                     bellSize={bellSize}
                     key={`${note.tone}${note.octave}`}
                     onClick= { createPlaySoundEvent( note ) }

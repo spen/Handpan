@@ -36,13 +36,17 @@ const theme = {
     colors: {
       blue: "#359",
       blueBright: '#3c7af6',
+      blueHover: '#3c6ad6',
       darkBackground: "#202832",
+      darkBackgroundHighlight: "#2D3947",
+      darkHover: "#353b48",
       selected: 'blueBright',
+    //   contrast: '#ddd',
     },
     input: {
-        padding: '16px',
+        padding: '12px',
     },
-  },
+  },    
   formField: {
     border: 'none',
     label: {
@@ -50,17 +54,34 @@ const theme = {
       marginBotton: '-20px',
     },
   },
+  button: {
+    primary: {
+        color: '#2196f3',
+        active: {
+          border: {
+            color: 'red',
+          },
+        },
+      },
+      default: {
+        color: 'brightBlue',
+        border: undefined,
+        padding: {
+          horizontal: '12px',
+          vertical: '8px',
+        },
+      },
+  },
   select: {
     background: {
       color: 'blue'
     },
     options: {
       container: {
-        background: {
-          'color': 'darkBackground',
+            background: {
+                color: 'darkBackground',
+            },
         },
-        },
-        padding: '20px',
       text: {
         color: 'white',
       }

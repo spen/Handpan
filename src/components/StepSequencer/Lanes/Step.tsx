@@ -1,21 +1,38 @@
-import styled from 'styled-components';
+import * as React from 'react';
+import { Box } from 'grommet';
 
 interface StepProps {
     isActive?: boolean;
     isPlaying?: boolean;
     isAtPlayPosition?: boolean;
+    onClick?: (any) => void;
+    index: number;
 }
 
 const getBackgroundColor = ( { isActive, isAtPlayPosition, isPlaying }: StepProps ) =>
+        isActive ? (
+            isAtPlayPosition ? 'blueBright' : 'blue'
+        ) : (
+            isAtPlayPosition && isPlaying ? 'darkBackgroundHighlight' : 'darkBackground'
+        );
+    
+const getBackgroundHoverColor = ( { isActive, isAtPlayPosition, isPlaying }: StepProps ) =>
     isActive ? (
-        isAtPlayPosition && isPlaying ? '#58c' : '#359'
-    ) : 'transparent';
+        isAtPlayPosition && isPlaying ? 'blueBright' : 'blueHover'
+    ) : 'darkHover';
 
-const Step = styled.div<StepProps>`
-    background-color: ${ props => getBackgroundColor( props ) }
-    border: 1px solid rgba( 255, 255, 255, ${ props => props.isAtPlayPosition ? 0.6 : 0.2 } );
-    flex-grow: 1;
-    margin: 2px;
-`;
-
-export default Step;
+export default ( props : StepProps ) =>
+    <Box 
+        background={ getBackgroundColor( props ) } 
+        flex="grow"
+        fill="vertical"
+        border={ {
+            color: 'border',
+            size:  '1px',
+            style: 'solid',
+            side: "all"
+        } }
+        hoverIndicator={ getBackgroundHoverColor( props ) }
+        onClick={ props.onClick }
+        focusIndicator={ false }
+    />

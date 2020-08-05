@@ -1,15 +1,14 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { includes } from 'lodash';
+import { Box } from 'grommet';
 
 import handpanSampler from '../../../lib/handpanSampler';
-import { stringifyNote } from '../../../lib/note';
+import { stringifyNote, getColorForNote } from '../../../lib/note';
+import { chromaticColorMap } from '../../../constants/chromaticNotes';
 import Steps from './Steps';
 import Controls from './Controls';
 
-const LaneContainer = styled.div`
-    display: flex;
-`;
 
 type LaneType = {
     stepsCount: number,
@@ -27,6 +26,7 @@ interface LaneProps {
     playPosition: number,
     isPlaying: boolean,
     laneIndex: number,
+    color?: string,
 };
 
 const Lane = ( { lane, laneIndex, note, playPosition, isPlaying }: LaneProps ) => {
@@ -48,8 +48,8 @@ const Lane = ( { lane, laneIndex, note, playPosition, isPlaying }: LaneProps ) =
     );
 
     return (
-        <LaneContainer>
-            <Controls label={ stringifyNote( note ) } />
+        <Box direction="row">
+            <Controls label={ stringifyNote( note ) } color={ getColorForNote( note ) } />
             <Steps
                 stepsCount={ stepsCount }
                 activeSteps={ activeSteps }
@@ -57,7 +57,7 @@ const Lane = ( { lane, laneIndex, note, playPosition, isPlaying }: LaneProps ) =
                 playPosition={ playPosition % stepsCount }
                 laneIndex={ laneIndex }
             />
-        </LaneContainer>
+        </Box>
     );
 }
 

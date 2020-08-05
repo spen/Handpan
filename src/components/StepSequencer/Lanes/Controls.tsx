@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Box } from 'grommet';
 
 const NoteLabel = styled.div`
     padding: 4px;
@@ -11,15 +12,21 @@ const NoteLabel = styled.div`
 
 interface LaneControlsProps {
     label: string,
+    color?: string,
 }
 
-const LaneControls = ( { label }: LaneControlsProps ) => {
+const LaneControls = ( { label, color = "red" }: LaneControlsProps ) => {
     // TODO: make sound trigger when we click the label
     // (and add any other useful controls, like muting or soloing)
     return (
-        <NoteLabel>
+        <Box
+            pad="xsmall"
+            width="42px"
+            background="darkBackground"
+            margin={ { right: 'xsmall' } }
+        >
             { label }
-        </NoteLabel>
+        </Box>
     );
 }
 

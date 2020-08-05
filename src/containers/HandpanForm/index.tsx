@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { find, first } from 'lodash';
 import { Form, Select, Box, FormField } from 'grommet';
-// import { grommet } from 'grommet/themes';
 
 import chromaticNotes from '../../constants/chromaticNotes';
 import handpanScales from '../../constants/handpanScales';
@@ -47,37 +46,35 @@ const HandpanForm = ({ }) => {
     );
 
     return (
-        <Box>
-            <Form id="scale-options">
-                <Box>
-                    <FormField label="Root Note" htmlFor="root-note-select">
-                        <Select
-                            id="root-note-select"
-                            value={rootNote}
-                            onChange={handleChangeRootNote}
-                            options={chromaticNotes}
+        <Form id="scale-options">
+            <Box>
+                <FormField label="Root Note" htmlFor="root-note-select">
+                    <Select
+                        id="root-note-select"
+                        value={rootNote}
+                        onChange={handleChangeRootNote}
+                        options={chromaticNotes}
 
-                        />
-                    </FormField>
-                    <FormField label="Root Octave" htmlFor="root-octave-select">
-                        <Select
-                            id="root-octave-select"
-                            value={rootOctave}
-                            onChange={handleChangeRootOctave}
-                            options={OCTAVES}
-                        />
-                    </FormField>
-                    <FormField label="Scale" htmlFor="scale-select">
-                        <Select
-                            id="scale-select"
-                            value={scale}
-                            onChange={handleChangeScale}
-                            options={handpanScales.map(scale => scale.name)}
-                        />
-                    </FormField>
-                </Box>
-            </Form>
-        </Box>
+                    />
+                </FormField>
+                <FormField label="Root Octave" htmlFor="root-octave-select">
+                    <Select
+                        id="root-octave-select"
+                        value={rootOctave}
+                        onChange={handleChangeRootOctave}
+                        options={OCTAVES}
+                    />
+                </FormField>
+                <FormField label="Scale" htmlFor="scale-select">
+                    <Select
+                        id="scale-select"
+                        value={scale}
+                        onChange={handleChangeScale}
+                        options={handpanScales.map(scale => scale.name)}
+                    />
+                </FormField>
+            </Box>
+        </Form>
     );
 }
 

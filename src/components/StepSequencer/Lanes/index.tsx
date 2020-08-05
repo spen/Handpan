@@ -28,6 +28,7 @@ const Lanes = ( { lanes, isPlaying, notes, playPosition }: LanesProps ) => (
                 laneIndex={ i }
                 note={ notes[ i ] /* This needs improvement, what happens if notes[ 4 ] doesnt exist? Errors */ }
                 playPosition={ playPosition % lane.stepsCount }
+                color={ "red" }
             />
         ) ) }
     </React.Fragment>
