@@ -9,7 +9,6 @@ const LayoutContainer = styled.div`
 
 const Main = styled.div`
   flex-grow: 1;
-  background-color: #202832;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -17,7 +16,6 @@ const Main = styled.div`
 
 const ContentArea = styled.div`
   flex-grow: 1;
-  background-color: #202832;
 `;
 
 export const Layout: React.FC<{}> = ({ children }) => {

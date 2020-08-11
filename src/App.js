@@ -12,7 +12,7 @@ import { SequencerStateProvider } from "./state/useSequencerContext";
 
 const GlobalStyle = createGlobalStyle`
   body {
-	background-color: #202832;
+	background-color: #253139;
 	margin: 0;
 	min-height: 100vh;
     min-width: 100vw;
@@ -39,6 +39,7 @@ const theme = {
       blueHover: '#3c6ad6',
       darkBackground: "#202832",
       darkBackgroundHighlight: "#2D3947",
+      mediumDarkBackground: "#253139",
       darkHover: "#353b48",
       selected: 'blueBright',
     //   contrast: '#ddd',
