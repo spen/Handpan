@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import { includes } from "lodash";
 
 import { InstrumentNote } from "../../state/useInstrumentsContext";
 import handpanSampler from '../../lib/handpanSampler';
@@ -42,8 +43,9 @@ const Bell = styled.div<BellProps>`
 	border: 2px solid #359;
 	width: ${({ bellSize = defaultBellSize }) => bellSize}px;
 	height: ${({ bellSize = defaultBellSize }) => bellSize}px;
-	color:  ${({ color = "#359" }) => color};
+    color:  ${({ color = "#359" }) => color};
 	background-color: ${({ isActive }) => (isActive ? "#359" : "transparent")};
+    transition: background-color 0.2s ease;
 	font-size: 1.4em;
 	display: flex;
 	align-items: center;
@@ -82,10 +84,12 @@ const createPlaySoundEvent = ( note: InstrumentNote ) => () => {
 
 interface HandpanProps {
   notes: InstrumentNote[];
+  activeNotes?: InstrumentNote[];
 };
 
 const Handpan: React.FC<HandpanProps> = ({
   notes = [],
+  activeNotes = [],
 }) => {
   const [rootNote, ...restNotes] = notes;
 
@@ -93,8 +97,9 @@ const Handpan: React.FC<HandpanProps> = ({
   // but handpan notes are arranged different to that,
   // so we need to sort them to match the layout of the instrument.
   const toneFields = sortForLayout(restNotes);
+  const size = 420;
 
-    const size = 420;
+  console.log( { activeNotes } );
 
   return (
     <Container size={ size }>
@@ -104,6 +109,7 @@ const Handpan: React.FC<HandpanProps> = ({
             bellSize={ 0.25 * size }
             onClick={ createPlaySoundEvent( rootNote ) }
             style={ { transform: 'translate(-50%, -50%)' } }
+            isActive={ includes( activeNotes, rootNote ) }
         >
           {rootNote.tone}{rootNote.octave}
         </Bell>
@@ -139,7 +145,8 @@ const Handpan: React.FC<HandpanProps> = ({
                     color={getColorForNote( note )}
                     bellSize={bellSize}
                     key={`${note.tone}${note.octave}`}
-                    onClick= { createPlaySoundEvent( note ) }
+                    onClick={ createPlaySoundEvent( note ) }
+                    isActive={ includes( activeNotes, note ) }
                 >
                     {note.tone}{note.octave}
                 </Bell>

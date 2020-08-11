@@ -6,13 +6,12 @@ import { Box, Button, FormField, TextInput } from 'grommet';
 import SequencerContext, { setTempo } from "../../../state/useSequencerContext";
 
 const PlayIcon = styled( MdPlayArrow )`
-    display: flex; !important
+    display: flex;
 `;
 
 const PauseIcon = styled( MdPause )`
     display: flex;
 `;
-
 
 interface ControlBarProps {
     isPlaying: boolean,

@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import { includes } from 'lodash';
 import { Box } from 'grommet';
 
+import InstrumentContext from '../../../state/useInstrumentsContext';
+import useInstrumentReducer from '../../../state/instrument/reducer';
 import handpanSampler from '../../../lib/handpanSampler';
 import { stringifyNote, getColorForNote } from '../../../lib/note';
-import { chromaticColorMap } from '../../../constants/chromaticNotes';
 import Steps from './Steps';
 import Controls from './Controls';
 
@@ -29,8 +30,15 @@ interface LaneProps {
     color?: string,
 };
 
+// const debounced
+
 const Lane = ( { lane, laneIndex, note, playPosition, isPlaying }: LaneProps ) => {
+    // const [instrumentState, setInstrumentState] = React.useContext(InstrumentContext);
     const { stepsCount, activeSteps } = lane;
+
+    const { state, addNote, removeNote , flashNote} =  useInstrumentReducer();
+
+    console.log( { state })
 
     React.useEffect(
         () => {
@@ -41,8 +49,12 @@ const Lane = ( { lane, laneIndex, note, playPosition, isPlaying }: LaneProps ) =
                 handpanSampler.loaded
             );
 
-            shouldPlayNote &&
-                handpanSampler.triggerAttack( stringifyNote( note ) )
+            if ( shouldPlayNote ) {
+
+                handpanSampler.triggerAttack( stringifyNote( note ) );
+
+                flashNote( note );
+            }
         },
         [ playPosition, isPlaying ]
     );
