@@ -141,7 +141,7 @@ const Handpan: React.FC<HandpanProps> = ({
                     key={`${note.tone}${note.octave}`}
                     onClick= { createPlaySoundEvent( note ) }
                 >
-                    {note.tone}{note.octave}
+                    { stringifyNote( note ) }
                 </Bell>
               </Offsettable>
           );
