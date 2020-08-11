@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styled from 'styled-components';
 import { Box } from 'grommet';
 
 import InstrumentContext from "../../state/useInstrumentsContext";
@@ -51,7 +50,7 @@ const StepSequencer = () => {
                 onPlay={ setPlaying }
             />
             <Lanes
-                lanes={ lanes }
+                lanes={ lanes.slice( 0, notes.length ) }
                 isPlaying={ isPlaying }
                 notes={ notes }
                 playPosition={ playPosition }
