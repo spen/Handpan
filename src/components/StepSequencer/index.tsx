@@ -43,7 +43,7 @@ const StepSequencer = () => {
     const setPlaying = () => setIsPlaying( true );
 
 	return (
-		<Box fill background="darkBackground" elevation="medium">
+		<Box fill background="darkBackground" elevation="medium" round={ { corner: 'top' } }>
             <ControlBar
                 isPlaying={ isPlaying }
                 onPause={ setPaused }
