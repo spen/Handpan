@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import { Box } from 'grommet';
 
 import { InstrumentNote } from "../../state/useInstrumentsContext";
 import handpanSampler from '../../lib/handpanSampler';
@@ -9,17 +10,21 @@ interface ContainerProps {
     size: number;
   }
 
-const Container = styled.div<ContainerProps>`
-  display: flex;
-  flex-direction: row;
-  background-color: transparent;
-  border: 10px solid #3c7af6;
-  height: ${props => props.size}px;
-  width: ${props => props.size}px;
-  position: relative;
-  border-radius: 50%;
-  overflow: hidden;
-`;
+const Container = ( { children, size } ) => (
+    <Box
+        flex
+        direction="row"
+        background="darkBackground"
+        border={{ color: 'blueBright', size: 'large' }}
+        width={ `${ size }px` }
+        height={ `${ size }px` }
+        elevation="medium"
+        round="full"
+        overflow="hidden"
+    >
+        { children }
+    </Box>
+)
 
 // Responsible for offsetting the circle,
 // to see the difference, just commment out the styles
@@ -28,6 +33,7 @@ const Framer = styled.div`
   width: 100%;
   height: 100%;
 `;
+
 
 const defaultBellSize = 80; // just an arbitrary number that seems to be the right size
 
