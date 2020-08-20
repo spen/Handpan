@@ -1,16 +1,15 @@
 import * as React from 'react';
 import { Box } from 'grommet';
 
-import InstrumentContext from "../../state/useInstrumentsContext";
+import { InstrumentContext } from '../../state/instrument';
 import SequencerContext from "../../state/useSequencerContext";
 import Lanes from './Lanes';
 import ControlBar from './ControlBar';
 
 const StepSequencer = () => {
     const [sequencerState] = React.useContext(SequencerContext);
-    const [instrumentState] = React.useContext(InstrumentContext);
+    const { state: { instrument: { notes } } } = React.useContext(InstrumentContext);
     const { bpm, lanes } = sequencerState;
-    const { notes } = instrumentState;
 
     // Here we're using component state (as opposed to pulling in state access from another module).
     // It works in the same way but has a few differences.
