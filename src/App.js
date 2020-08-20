@@ -9,6 +9,7 @@ import HomePage from "./Pages/Home";
 import Layout from "./components/Layout";
 import { InstrumentStateProvider } from "./state/useInstrumentsContext";
 import { SequencerStateProvider } from "./state/useSequencerContext";
+import { InstrumentContainer } from './state/instrument';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -93,17 +94,19 @@ const theme = {
   },
 }
 
-export const App = () => (
-  <Wrapper>
-    <GlobalStyle />
-    <Grommet theme={ theme }>
-        <InstrumentStateProvider>
-        <SequencerStateProvider>
-            <Layout>
-                <HomePage />
-            </Layout>
-        </InstrumentStateProvider>
-        </SequencerStateProvider>
-    </Grommet>
-  </Wrapper>
-);
+export const App = () => {
+    return (
+        <Wrapper>
+            <GlobalStyle />
+            <Grommet theme={ theme }>
+                <InstrumentContainer>
+                <SequencerStateProvider>
+                    <Layout>
+                        <HomePage />
+                    </Layout>
+                </SequencerStateProvider>
+                </InstrumentContainer>
+            </Grommet>
+        </Wrapper>
+    );
+}

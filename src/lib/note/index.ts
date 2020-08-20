@@ -1,7 +1,7 @@
 import { Note } from '@tonaljs/tonal';
 import { simplify, enharmonic } from "@tonaljs/note";
 
-import { InstrumentNote } from '../../state/useInstrumentsContext';
+import { InstrumentNote } from '../../state/instrument/types';
 import { chromaticColorMap } from '../../constants/chromaticNotes';
 
 type Accidental = "♭" | "#";

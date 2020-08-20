@@ -1,14 +1,12 @@
 import * as React from 'react';
-import styled from 'styled-components';
 import { includes } from 'lodash';
 import { Box } from 'grommet';
 
 import handpanSampler from '../../../lib/handpanSampler';
 import { stringifyNote, getColorForNote } from '../../../lib/note';
-import { chromaticColorMap } from '../../../constants/chromaticNotes';
+import { InstrumentContext } from '../../../state/instrument';
 import Steps from './Steps';
 import Controls from './Controls';
-
 
 type LaneType = {
     stepsCount: number,
@@ -30,6 +28,7 @@ interface LaneProps {
 };
 
 const Lane = ( { lane, laneIndex, note, playPosition, isPlaying }: LaneProps ) => {
+    const { flashNote } = React.useContext( InstrumentContext );
     const { stepsCount, activeSteps } = lane;
 
     React.useEffect(
@@ -43,6 +42,9 @@ const Lane = ( { lane, laneIndex, note, playPosition, isPlaying }: LaneProps ) =
 
             shouldPlayNote &&
                 handpanSampler.triggerAttack( stringifyNote( note ) )
+
+            shouldPlayNote &&
+                flashNote( note );
         },
         [ playPosition, isPlaying ]
     );

@@ -1,8 +1,10 @@
 import * as React from "react";
 import styled from "styled-components";
 import { Box } from 'grommet';
+import { find } from "lodash";
 
-import { InstrumentNote } from "../../state/useInstrumentsContext";
+import { InstrumentContext } from '../../state/instrument';
+import { InstrumentNote } from '../../state/instrument/types';
 import handpanSampler from '../../lib/handpanSampler';
 import { stringifyNote, getColorForNote } from '../../lib/note';
 
@@ -50,6 +52,7 @@ const Bell = styled.div<BellProps>`
 	height: ${({ bellSize = defaultBellSize }) => bellSize}px;
 	color:  ${({ color = "#359" }) => color};
 	background-color: ${({ isActive }) => (isActive ? "#359" : "transparent")};
+	transition: background-color 0.3s ease;
 	font-size: 1.4em;
 	display: flex;
 	align-items: center;
@@ -58,7 +61,7 @@ const Bell = styled.div<BellProps>`
 	cursor: pointer;
 
 	&:hover {
-		background-color: rgba( 255, 255, 255, 0.3 );
+        background-color: ${({ isActive }) => (isActive ? "#359" : "rgba( 255, 255, 255, 0.3 )")};
 	}
 `;
 
@@ -82,25 +85,31 @@ const sortForLayout = (collection) =>
     []
   );
 
-const createPlaySoundEvent = ( note: InstrumentNote ) => () => {
-    handpanSampler.loaded && handpanSampler.triggerAttack( stringifyNote( note ) );
-}
-
 interface HandpanProps {
   notes: InstrumentNote[];
+  activeNotes?: InstrumentNote[];
 };
 
 const Handpan: React.FC<HandpanProps> = ({
   notes = [],
+  activeNotes = [],
 }) => {
-  const [rootNote, ...restNotes] = notes;
+    const { flashNote } = React.useContext( InstrumentContext );
+    const [rootNote, ...restNotes] = notes;
 
-  // We'll have a set of circles positioned clockwise,
-  // but handpan notes are arranged different to that,
-  // so we need to sort them to match the layout of the instrument.
-  const toneFields = sortForLayout(restNotes);
+    // We'll have a set of circles positioned clockwise,
+    // but handpan notes are arranged different to that,
+    // so we need to sort them to match the layout of the instrument.
+    const toneFields = sortForLayout(restNotes);
 
     const size = 420;
+
+    const createPlaySoundEvent = ( note: InstrumentNote ) => () => {
+        if ( handpanSampler.loaded ) {
+            handpanSampler.triggerAttack( stringifyNote( note ) );
+            flashNote( note );
+        }
+    }
 
   return (
     <Container size={ size }>
@@ -110,6 +119,7 @@ const Handpan: React.FC<HandpanProps> = ({
             bellSize={ 0.25 * size }
             onClick={ createPlaySoundEvent( rootNote ) }
             style={ { transform: 'translate(-50%, -50%)' } }
+            isActive={ find( activeNotes, rootNote ) }
         >
           {rootNote.tone}{rootNote.octave}
         </Bell>
@@ -146,6 +156,7 @@ const Handpan: React.FC<HandpanProps> = ({
                     bellSize={bellSize}
                     key={`${note.tone}${note.octave}`}
                     onClick= { createPlaySoundEvent( note ) }
+                    isActive={ find( activeNotes, note ) }
                 >
                     { stringifyNote( note ) }
                 </Bell>
