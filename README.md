@@ -10,7 +10,7 @@ A stretch goal would be allow them to record their handpan player and detect the
 
 # The project so far...
 
-![Screen shot](./2020-07-28.png?raw=true)
+![Screen shot](./2020-08-24.png?raw=true)
 
 # Getting Up & Running
 
